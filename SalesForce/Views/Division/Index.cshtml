@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SalesForce.Models.Setup.Division>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div style="padding-left: 300px;padding-top: 100px">
+
+    <table id="example" class="table table-striped table-bordered" style="width: 80%">
+        <thead>
+        <tr>
+            <th>Division ID</th>
+            <th>Division Name</th>
+            <th>Company Name</th>
+            <th>Company Code</th>
+            <th>Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DivisionId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DivisionName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyCode)
+                    </td>
+                    <td>
+                        <button onclick="location.href='@Url.Action("Create","Division")'" class="data-btn btn btn-success" type="button"><i class="fa fa-save"></i> Create</button>
+                        <button onclick="location.href='@Url.Action("Edit","Division",new { DivisionId = item.DivisionId})'" class="data-btn btn btn-dark" type="button"><i class="fa fa-edit"></i>Edit</button>
+                        <button onclick="location.href='@Url.Action("Delete","Division",new { DivisionId = item.DivisionId})'" class="data-btn btn btn-danger" type="button"><i class="fa fa-trash"></i> Delete</button>
+
+                    </td>
+                </tr>
+            }
+
+        }
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>

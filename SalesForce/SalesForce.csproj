@@ -122,7 +122,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\CityController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\DivisionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TownController.cs" />
     <Compile Include="Controllers\UserInformationController.cs" />
     <Compile Include="Controllers\ZoneController.cs" />
     <Compile Include="Global.asax.cs">
@@ -147,7 +150,9 @@
     <Compile Include="Models\Sale Officer\SalesOfficer.cs" />
     <Compile Include="Models\Setup\Area.cs" />
     <Compile Include="Models\Setup\City.cs" />
+    <Compile Include="Models\Setup\Division.cs" />
     <Compile Include="Models\Setup\GoodTransfer.cs" />
+    <Compile Include="Models\Setup\Town.cs" />
     <Compile Include="Models\Setup\Zone.cs" />
     <Compile Include="Models\Sql Helper\HRGlobal.cs" />
     <Compile Include="Models\Sql Helper\SQLHelper.cs" />
@@ -788,6 +793,17 @@
     <Content Include="Views\City\Edit.cshtml" />
     <Content Include="Views\UserInformation\Index.cshtml" />
     <Content Include="Views\Area\Edit.cshtml" />
+    <Content Include="Views\Division\Create.cshtml" />
+    <Content Include="Views\Division\Edit.cshtml" />
+    <Content Include="Views\Division\Index.cshtml" />
+    <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Town\Create.cshtml" />
+    <Content Include="Views\Town\Edit.cshtml" />
+    <Content Include="Views\Town\Index.cshtml" />
+    <Content Include="Views\UserInformation\Create.cshtml" />
+    <Content Include="Views\UserInformation\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

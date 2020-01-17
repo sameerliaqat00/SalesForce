@@ -13,25 +13,22 @@ namespace SalesForce.Models.Channels
         public int Id { get; set; }
         public int SubchannelId { get; set; }
         public string SubchannelName { get; set; }
-        public bool Status { get; set; }
     }
     public class SubChannelsHandler
     {
         private string query = "";
         public int Insert(SubChannels SubChannels)
         {
-            query = "insert into tbl_SubChannels(SubChannelId,SubChannelName,Status)Values('";
+            query = "insert into tbl_SubChannels(SubChannelId,SubChannelName)Values('";
             query = query + SubChannels.SubchannelId + "','";
-            query = query + SubChannels.SubchannelName + "','";
-            query = query + SubChannels.Status + "')";
+            query = query + SubChannels.SubchannelName + "')";
             return SqlHelper.ExecuteNonQuery(HrGlobal.DbCon, CommandType.Text, query);
         }
 
         public int Update(SubChannels SubChannels)
         {
             query = "update tbl_SubChannels set";
-            query = query + " SubChannelName = '" + SubChannels.SubchannelName + "',";
-            query = query + " Status = '" + SubChannels.Status + "'";
+            query = query + " SubChannelName = '" + SubChannels.SubchannelName + "'";
             query = query + " Where SubChannelId = '" + SubChannels.SubchannelId + "'";
             return SqlHelper.ExecuteNonQuery(HrGlobal.DbCon, CommandType.Text, query);
         }
@@ -53,7 +50,7 @@ namespace SalesForce.Models.Channels
                 {
                     SubChannels.SubchannelId = Convert.ToInt32(dataRow["SubChannelId"]);
                     SubChannels.SubchannelName = dataRow["SubChannelName"].ToString();
-                    SubChannels.Status = Convert.ToBoolean(dataRow["Status"]);
+                   
                 }
 
                 return SubChannels;
@@ -67,13 +64,14 @@ namespace SalesForce.Models.Channels
             var Data = SqlHelper.ExecuteDataset(HrGlobal.DbCon, CommandType.Text, query).Tables[0];
             if (Data.Rows.Count > 0)
             {
-                var SubChannels = new SubChannels();
+                
                 var SubChannelslist = new List<SubChannels>();
                 foreach (DataRow dataRow in Data.Rows)
                 {
+                    var SubChannels = new SubChannels();
                     SubChannels.SubchannelId = Convert.ToInt32(dataRow["SubChannelId"]);
                     SubChannels.SubchannelName = dataRow["SubChannelName"].ToString();
-                    SubChannels.Status = Convert.ToBoolean(dataRow["Status"]);
+                    
                     SubChannelslist.Add(SubChannels);
                 }
 
@@ -85,7 +83,7 @@ namespace SalesForce.Models.Channels
 
         public int GetMaxId()
         {
-            query = "select isnull(max(Channelid),0) + 1 tbl_SubChannels";
+            query = "select isnull(max(SubChannelId),0) + 1 from tbl_SubChannels";
             return Convert.ToInt32(SqlHelper.ExecuteScalar(HrGlobal.DbCon, CommandType.Text, query));
         }
     }

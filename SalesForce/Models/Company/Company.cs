@@ -11,7 +11,6 @@ namespace SalesForce.Models.Company
 {
     public class Company
     {
-        public int Id { get; set; }
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string ShortName { get; set; }
@@ -28,7 +27,7 @@ namespace SalesForce.Models.Company
         private string query = "";
         public int Insert(Company company)
         {
-            query = "insert into tbl_Company(CompanyId,CompanyName,ShortName,Adress,Phone,Fax,Website,Domain,NTN,GST)Values('";
+            query = "insert into tbl_Company(CompanyId,CompanyName,ShortName,Address,Phone,Fax,Website,Domain,NTN,GST)Values('";
             query = query + company.CompanyId + "','";
             query = query + company.CompanyName + "','";
             query = query + company.ShortName + "','";
@@ -96,10 +95,11 @@ namespace SalesForce.Models.Company
             var Data = SqlHelper.ExecuteDataset(HrGlobal.DbCon, CommandType.Text, query).Tables[0];
             if (Data.Rows.Count > 0)
             {
-                var Company = new Company();
+               
                 var Companylist = new List<Company>();
                 foreach (DataRow dataRow in Data.Rows)
                 {
+                    var Company = new Company();
                     Company.CompanyId = Convert.ToInt32(dataRow["CompanyId"]);
                     Company.CompanyName = dataRow["CompanyName"].ToString();
                     Company.ShortName = dataRow["ShortName"].ToString();
@@ -121,7 +121,7 @@ namespace SalesForce.Models.Company
 
         public int GetMaxId()
         {
-            query = "select isnull(max(Companyid),0) + 1 tbl_Company";
+            query = "select isnull(max(Companyid),0) + 1 from tbl_Company";
             return Convert.ToInt32(SqlHelper.ExecuteScalar(HrGlobal.DbCon, CommandType.Text, query));
         }
     }

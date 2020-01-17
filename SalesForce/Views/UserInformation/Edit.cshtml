@@ -1,0 +1,256 @@
+﻿@model SalesForce.Models.Usres.UserInformation
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<section id="main-content" class=" ">
+    <section class="wrapper main-wrapper row" style=''>
+
+        <div class='col-12'>
+            <div class="page-title">
+
+                <div class="float-left"><h1 class="title">Edit User Information</h1></div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!-- MAIN CONTENT AREA STARTS -->
+        <div class="col-12">
+            <section class="box ">
+                <header class="panel_header">
+                    @*<h2 class="title float-left">Basic Info</h2>*@
+                    <div class="actions panel_actions float-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <form action="#" id="actionform" method="post">
+                            <div class="col-12 col-md-9 col-lg-8">
+
+                                <div class="form-group">
+                                    <label class="form-label">Zone ID</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" readonly="readonly" name="UserId" value="@Model.UserId" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">User Name</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="UserName" value="@Model.UserName" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="LastName" value="@Model.LastName" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Sap Code</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="SapCode" value="@Model.SapCode" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Cell Phone</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="CellPhone" value="@Model.CellPhone" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">User Name</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="UserName" value="@Model.Email" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Password</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="password" name="Password" value="@Model.Password" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Address</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="Address" value="@Model.Address" class="form-control">
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <label class="form-label">Company</label>
+                                    <span class="desc"></span>
+                                    <select class="form-control" name="CompanyName">
+                                        @if (ViewBag.Company != null)
+                                        {
+                                            foreach (var company in ViewBag.Company)
+                                            {
+                                                <option value="@company.CompanyName" @(company.CompanyName == Model.Company ? "selected" : string.Empty)>
+
+                                                    @company.CompanyName
+
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Division</label>
+                                    <span class="desc"></span>
+                                    <select class="form-control" name="Zone">
+                                        @if (ViewBag.Division != null)
+                                        {
+                                            foreach (var division in ViewBag.Division)
+                                            {
+                                                <option value="@division.DivisionName" @(division.DivisionName == Model.Division ? "selected" : string.Empty)>
+
+                                                    @division.DivisionName
+
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">City</label>
+                                    <span class="desc"></span>
+                                    <select class="form-control" name="City">
+                                        @if (ViewBag.City != null)
+                                        {
+                                            foreach (var city in ViewBag.City)
+                                            {
+                                                <option value="@city.CityName" @(city.CityName == Model.City ? "selected" : string.Empty)>
+
+                                                    @city.CityName
+
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Area</label>
+                                    <span class="desc"></span>
+                                    <select class="form-control" name="Area">
+                                        @if (ViewBag.Area != null)
+                                        {
+                                            foreach (var area in ViewBag.Area)
+                                            {
+                                                <option value="@area.AreaName" @(area.AreaName == Model.Area ? "selected" : string.Empty)>
+
+                                                    @area.Area
+
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Territory</label>
+                                    <span class="desc"></span>
+                                    <select class="form-control" name="Territory">
+                                        @if (ViewBag.Zone != null)
+                                        {
+                                            foreach (var zone in ViewBag.Zone)
+                                            {
+                                                <option value="@zone.ZoneName" @(zone.ZoneName == Model.Territory ? "selected" : string.Empty)>
+
+                                                    @zone.ZoneName
+
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Town</label>
+                                    <span class="desc"></span>
+                                    <select class="form-control" name="Town">
+                                        @if (ViewBag.Town != null)
+                                        {
+                                            foreach (var town in ViewBag.Town)
+                                            {
+                                                <option value="@town.TownName" @(town.TownName == Model.Town ? "selected" : string.Empty)>
+
+                                                    @town.TownName
+
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Distribution</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="Distribution" value="@Model.Distribution" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">ReportingTo</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="ReportingTo" value="@Model.ReportingTo" class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12 col-md-9 col-lg-8 padding-bottom-30">
+                                <div class="text-left">
+                                    <button type="actionbutton" class="btn btn-primary">Save</button>
+                                    <button onclick="location.href = '@Url.Action("Index","UserInformation")'" type="button" class="btn">Return</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </section>
+        </div>
+
+    </section>
+</section>
+
+
+<script>
+
+    $("#actionbutton").click(function() {
+
+        if (!$("#actionform").valid()) {
+            return false;
+        }
+
+        $.ajax({
+                url: '@Url.Action("Edit","Zone")',
+                method: 'post',
+                data: $("#actionform").serialize()
+            })
+            .done(function(response) {
+                if (response.success) {
+                    @Url.Action("Index","Zone")
+                }
+            })
+        return false;
+    });
+
+</script>

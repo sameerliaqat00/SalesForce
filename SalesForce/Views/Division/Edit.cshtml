@@ -1,0 +1,115 @@
+﻿
+@model SalesForce.Models.Setup.Division
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<section id="main-content" class=" ">
+    <section class="wrapper main-wrapper row" style=''>
+
+        <div class='col-12'>
+            <div class="page-title">
+
+                <div class="float-left"><h1 class="title">Edit Division</h1></div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!-- MAIN CONTENT AREA STARTS -->
+        <div class="col-12">
+            <section class="box ">
+                <header class="panel_header">
+                    @*<h2 class="title float-left">Basic Info</h2>*@
+                    <div class="actions panel_actions float-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <form action="#" id="actionform" method="post">
+                            <div class="col-12 col-md-9 col-lg-8">
+
+                                <div class="form-group">
+                                    <label class="form-label">Division ID</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" readonly="readonly" name="DivisionId" value="@Model.DivisionId" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Division Name</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="DivisionName" value="@Model.DivisionName" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Company Name</label>
+                                    <span class="desc"></span>
+                                    <select class="form-control" name="CompanyName">
+                                        @if (ViewBag.Company != null)
+                                        {
+                                            foreach (var company in ViewBag.Company)
+                                            {
+                                                <option value="@company.CompanyName" @(company.CompanyName == Model.CompanyName ? "selected" : string.Empty)>
+
+                                                    @company.CompanyName
+
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Company Code</label>
+                                    <span class="desc"></span>
+                                    <div class="controls">
+                                        <input type="text" name="CompanyCode" value="@Model.CompanyCode" class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12 col-md-9 col-lg-8 padding-bottom-30">
+                                <div class="text-left">
+                                    <button type="actionbutton" class="btn btn-primary">Save</button>
+                                    <button onclick="location.href = '@Url.Action("Index","Division")'" type="button" class="btn">Return</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </section>
+        </div>
+
+    </section>
+</section>
+
+
+<script>
+
+    $("#actionbutton").click(function() {
+
+        if (!$("#actionform").valid()) {
+            return false;
+        }
+
+        $.ajax({
+            url: '@Url.Action("Edit","Division")',
+            method: 'post',
+            data: $("#actionform").serialize()
+        }).done(function(response) {
+            if (response.success) {
+                @Url.Action("Index","Division")
+            }
+        })
+    });
+
+</script>
