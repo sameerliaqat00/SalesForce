@@ -125,4 +125,5 @@ namespace SalesForce.Models.Company
             return Convert.ToInt32(SqlHelper.ExecuteScalar(HrGlobal.DbCon, CommandType.Text, query));
         }
     }
+
 }

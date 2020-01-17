@@ -20,7 +20,7 @@ namespace SalesForce.Models.Usres
         public string Address { get; set; }
         public string Company { get; set; }
         public string Division { get; set; }
-        public string Region { get; set; }
+        public string City { get; set; }
         public string Area { get; set; }
         public string Territory { get; set; }
         public string Town { get; set; }
@@ -34,7 +34,7 @@ namespace SalesForce.Models.Usres
             private string query = "";
             public int Insert(UserInformation UserInformation)
             {
-                query = "insert into tbl_UserInformation(UserID,UserName,LastName,SapCode,CellPhone,Email,Password,Address,Company,Division,Region,Area,Territory,Town,Distribution,ReportingTo)Values('";
+                query = "insert into tbl_UserInformation(UserID,UserName,LastName,SapCode,CellPhone,Email,Password,Address,Company,Division,City,Area,Territory,Town,Distribution,ReportingTo)Values('";
                 query = query + UserInformation.UserId + "','";
                 query = query + UserInformation.UserName + "','";
                 query = query + UserInformation.LastName + "','";
@@ -45,7 +45,7 @@ namespace SalesForce.Models.Usres
                 query = query + UserInformation.Address + "','";
                 query = query + UserInformation.Company + "','";
                 query = query + UserInformation.Division + "','";
-                query = query + UserInformation.Region + "','";
+                query = query + UserInformation.City + "','";
                 query = query + UserInformation.Area + "','";
                 query = query + UserInformation.Territory + "','";
                 query = query + UserInformation.Town + "','";
@@ -66,7 +66,7 @@ namespace SalesForce.Models.Usres
                 query = query + " Address = '" + UserInformation.Address + "',";
                 query = query + " Company = '" + UserInformation.Company + "',";
                 query = query + " Division = '" + UserInformation.Division + "',";
-                query = query + " Region = '" + UserInformation.Region + "',";
+                query = query + " City = '" + UserInformation.City + "',";
                 query = query + " Area = '" + UserInformation.Area + "',";
                 query = query + " Territory = '" + UserInformation.Territory + "',";
                 query = query + " Town = '" + UserInformation.Town + "',";
@@ -101,7 +101,7 @@ namespace SalesForce.Models.Usres
                         UserInformation.Address = dataRow["Address"].ToString();
                         UserInformation.Company = dataRow["Company"].ToString();
                         UserInformation.Division = dataRow["Division"].ToString();
-                        UserInformation.Region = dataRow["Region"].ToString();
+                        UserInformation.City = dataRow["City"].ToString();
                         UserInformation.Area = dataRow["Area"].ToString();
                         UserInformation.Territory = dataRow["Territory"].ToString();
                         UserInformation.Town = dataRow["Town"].ToString();
@@ -134,7 +134,7 @@ namespace SalesForce.Models.Usres
                     UserInformation.Address = dataRow["Address"].ToString();
                     UserInformation.Company = dataRow["Company"].ToString();
                     UserInformation.Division = dataRow["Division"].ToString();
-                    UserInformation.Region = dataRow["Region"].ToString();
+                    UserInformation.City = dataRow["City"].ToString();
                     UserInformation.Area = dataRow["Area"].ToString();
                     UserInformation.Territory = dataRow["Territory"].ToString();
                     UserInformation.Town = dataRow["Town"].ToString();

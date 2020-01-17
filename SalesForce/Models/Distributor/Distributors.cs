@@ -17,6 +17,16 @@ namespace SalesForce.Models.Distributor
         public bool Status { get; set; }
         public string Logo { get; set; }
         public string Address { get; set; }
+
+        public string Lattitude { get; set; }
+        public string Longtitude { get; set; }
+        public string Division { get; set; }
+        public string ParentType { get; set; }
+        public DateTime ContractStartDate { get; set; }
+        public DateTime ContractEndDate { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public string  SapCode { get; set; }
+        public string Location { get; set; }
         //Owner Details
         public string ContactPerson { get; set; }
         public string FatherName { get; set; }
@@ -40,12 +50,23 @@ namespace SalesForce.Models.Distributor
         private string query = "";
         public int Insert(Distributors distributors)
         {
-            query = "insert into tbl_Distributors(DistributorId,DistributorName,Status,Logo,Address,ContactPerson,FatherName,Cnic,PhoneNumber,CellPhone,NTN,Email,Fax,Url,ManageInventory,ContactPersonAddress,RegionId,AreaId,ZoneId,Town)Values('";
+            query = "insert into tbl_Distributors(DistributorId,DistributorName,Status,Logo,Address,lattitude,longtitude,division,parenttype,contractstartdate,contractenddate,registrationdate,sapcode,location,ContactPerson,FatherName,Cnic,PhoneNumber,CellPhone,NTN,Email,Fax,Url,ManageInventory,ContactPersonAddress,RegionId,AreaId,ZoneId,Town)Values('";
             query = query + distributors.DistributorId + "','";
             query = query + distributors.DistributorName + "','";
             query = query + distributors.Status + "','";
             query = query + distributors.Logo + "','";
             query = query + distributors.Address + "','";
+
+            query = query + distributors.Lattitude + "','";
+            query = query + distributors.Longtitude + "','";
+            query = query + distributors.Division + "','";
+            query = query + distributors.ParentType + "','";
+            query = query + distributors.ContractStartDate + "','";
+            query = query + distributors.ContractEndDate + "','";
+            query = query + distributors.RegistrationDate + "','";
+            query = query + distributors.SapCode + "','";
+            query = query + distributors.Location + "','";
+
             query = query + distributors.ContactPerson + "','";
             query = query + distributors.FatherName + "','";
             query = query + distributors.CNIC + "','";
@@ -71,6 +92,15 @@ namespace SalesForce.Models.Distributor
             query = query + " Status = '" + distributors.Status + "',";
             query = query + " Logo = '" + distributors.Logo + "',";
             query = query + " Address = '" + distributors.Address + "',";
+            query = query + " Latitude = '" + distributors.Lattitude + "',";
+            query = query + " Longtitude = '" + distributors.Longtitude + "',";
+            query = query + " Division = '" + distributors.Division + "',";
+            query = query + " ParentType = '" + distributors.ParentType + "',";
+            query = query + " ContractStartDate = '" + distributors.ContactPersonAddress + "',";
+            query = query + " ContractEndDate = '" + distributors.ContractEndDate + "',";
+            query = query + " RegistrationDate = '" + distributors.RegistrationDate + "',";
+            query = query + " SapCode = '" + distributors.SapCode + "',";
+            query = query + " Location = '" + distributors.Location + "',";
             query = query + " ContactPerson = '" + distributors.ContactPerson + "',";
             query = query + " FatherName = '" + distributors.FatherName + "',";
             query = query + " CNIC = '" + distributors.CNIC + "',";
@@ -109,7 +139,18 @@ namespace SalesForce.Models.Distributor
                     distributors.DistributorName = dataRow["distributorName"].ToString();
                     distributors.Status = Convert.ToBoolean(dataRow["Status"]);
                     distributors.Logo = dataRow["Logo"].ToString();
+
                     distributors.Address = dataRow["Address"].ToString();
+                    distributors.Address = dataRow["Latitude"].ToString();
+                    distributors.Address = dataRow["Longtitude"].ToString();
+                    distributors.Address = dataRow["Division"].ToString();
+                    distributors.Address = dataRow["ParentType"].ToString();
+                    distributors.Address = dataRow["ContractStartDate"].ToString();
+                    distributors.Address = dataRow["ContractEndDate"].ToString();
+                    distributors.Address = dataRow["RegistrationDate"].ToString();
+                    distributors.Address = dataRow["SapCode"].ToString();
+                    distributors.Address = dataRow["Location"].ToString();
+
                     distributors.ContactPerson = dataRow["ContactPerson"].ToString();
                     distributors.FatherName = dataRow["FatherName"].ToString();
                     distributors.CNIC = dataRow["CNIC"].ToString();
@@ -149,6 +190,16 @@ namespace SalesForce.Models.Distributor
                     distributors.Status = Convert.ToBoolean(dataRow["Status"]);
                     distributors.Logo = dataRow["Logo"].ToString();
                     distributors.Address = dataRow["Address"].ToString();
+                    distributors.Address = dataRow["Latitude"].ToString();
+                    distributors.Address = dataRow["Longtitude"].ToString();
+                    distributors.Address = dataRow["Division"].ToString();
+                    distributors.Address = dataRow["ParentType"].ToString();
+                    distributors.Address = dataRow["ContractStartDate"].ToString();
+                    distributors.Address = dataRow["ContractEndDate"].ToString();
+                    distributors.Address = dataRow["RegistrationDate"].ToString();
+                    distributors.Address = dataRow["SapCode"].ToString();
+                    distributors.Address = dataRow["Location"].ToString();
+
                     distributors.ContactPerson = dataRow["ContactPerson"].ToString();
                     distributors.FatherName = dataRow["FatherName"].ToString();
                     distributors.CNIC = dataRow["CNIC"].ToString();

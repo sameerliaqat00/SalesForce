@@ -8,9 +8,8 @@ using SalesForce.Classes;
 
 namespace SalesForce.Models.Setup
 {
-    public class Zone
+    public class Zones
     {
-        public int Id { get; set; }
         public int ZoneId { get; set; }
         public string ZoneName { get; set; }
         public string ZoneCode { get; set; }
@@ -18,7 +17,7 @@ namespace SalesForce.Models.Setup
     public class ZoneHandler
     {
         private string query = "";
-        public int Insert(Zone itemctCategory)
+        public int Insert(Zones itemctCategory)
         {
             query = "insert into tbl_Zone(ZoneId,ZoneName,ZoneCode)Values('";
             query = query + itemctCategory.ZoneId + "','";
@@ -27,7 +26,7 @@ namespace SalesForce.Models.Setup
             return SqlHelper.ExecuteNonQuery(HrGlobal.DbCon, CommandType.Text, query);
         }
 
-        public int Update(Zone Zone)
+        public int Update(Zones Zone)
         {
             query = "update tbl_Zone set";
             query = query + " ZoneName = '" + Zone.ZoneName + "',";
@@ -42,13 +41,13 @@ namespace SalesForce.Models.Setup
             return SqlHelper.ExecuteNonQuery(HrGlobal.DbCon, CommandType.Text, query);
         }
 
-        public Zone GetById(int id)
+        public Zones GetById(int? id)
         {
             query = "select * from tbl_Zone Where ZoneId = '" + id + "'";
             var Data = SqlHelper.ExecuteDataset(HrGlobal.DbCon, CommandType.Text, query).Tables[0];
             if (Data.Rows.Count > 0)
             {
-                var Zone = new Zone();
+                var Zone = new Zones();
                 foreach (DataRow dataRow in Data.Rows)
                 {
                     Zone.ZoneId = Convert.ToInt32(dataRow["ZoneId"]);
@@ -61,16 +60,17 @@ namespace SalesForce.Models.Setup
 
             return null;
         }
-        public List<Zone> AllList()
+        public List<Zones> AllList()
         {
             query = "select * from tbl_Zone";
             var Data = SqlHelper.ExecuteDataset(HrGlobal.DbCon, CommandType.Text, query).Tables[0];
             if (Data.Rows.Count > 0)
             {
-                var Zone = new Zone();
-                var Zonelist = new List<Zone>();
+                Zones Zone;
+                var Zonelist = new List<Zones>();
                 foreach (DataRow dataRow in Data.Rows)
                 {
+                    Zone = new Zones();
                     Zone.ZoneId = Convert.ToInt32(dataRow["ZoneId"]);
                     Zone.ZoneName = dataRow["ZoneName"].ToString();
                     Zone.ZoneCode = dataRow["ZoneCode"].ToString();
@@ -85,7 +85,7 @@ namespace SalesForce.Models.Setup
 
         public int GetMaxId()
         {
-            query = "select isnull(max(Zoneid),0) + 1 tbl_Zone";
+            query = "select isnull(max(Zoneid),0) + 1 from tbl_Zone";
             return Convert.ToInt32(SqlHelper.ExecuteScalar(HrGlobal.DbCon, CommandType.Text, query));
         }
     }

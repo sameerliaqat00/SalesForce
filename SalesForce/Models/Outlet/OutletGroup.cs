@@ -37,13 +37,13 @@ namespace SalesForce.Models.Outlet
 
         public int Delete(int id)
         {
-            query = "delete from tbl_OutletGroup where SubChannelId = '" + id + "'";
+            query = "delete from tbl_OutletGroup where OutletId = '" + id + "'";
             return SqlHelper.ExecuteNonQuery(HrGlobal.DbCon, CommandType.Text, query);
         }
 
         public OutletGroup GetById(int id)
         {
-            query = "select * from tbl_OutletGroup Where ChannelId = '" + id + "'";
+            query = "select * from tbl_OutletGroup Where OutletId = '" + id + "'";
             var Data = SqlHelper.ExecuteDataset(HrGlobal.DbCon, CommandType.Text, query).Tables[0];
             if (Data.Rows.Count > 0)
             {

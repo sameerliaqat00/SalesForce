@@ -14,18 +14,18 @@ namespace SalesForce.Models.Setup
         public int CityId { get; set; }
         public string CityName { get; set; }
         public string CityCode { get; set; }
-        public int ZoneId { get; set; }
+        public string Zone { get; set; }
     }
     public class CityHandler
     {
         private string query = "";
         public int Insert(City city)
         {
-            query = "insert into tbl_City(CityId,CityName,CityCode,ZoneId)Values('";
+            query = "insert into tbl_City(CityId,CityName,CityCode,Zone)Values('";
             query = query + city.CityId + "','";
             query = query + city.CityName + "','";
             query = query + city.CityCode + "','";
-            query = query + city.ZoneId + "')";
+            query = query + city.Zone + "')";
             return SqlHelper.ExecuteNonQuery(HrGlobal.DbCon, CommandType.Text, query);
         }
 
@@ -34,7 +34,7 @@ namespace SalesForce.Models.Setup
             query = "update tbl_City set";
             query = query + " CityName = '" + City.CityName + "',";
             query = query + " CityCode = '" + City.CityCode + "',";
-            query = query + " ZoneId = '" + City.ZoneId + "'";
+            query = query + " Zone = '" + City.Zone + "'";
             query = query + " Where CityId = '" + City.CityId + "'";
             return SqlHelper.ExecuteNonQuery(HrGlobal.DbCon, CommandType.Text, query);
         }
@@ -57,7 +57,7 @@ namespace SalesForce.Models.Setup
                     City.CityId = Convert.ToInt32(dataRow["CityId"]);
                     City.CityName = dataRow["CityName"].ToString();
                     City.CityCode = dataRow["CityCode"].ToString();
-                    City.ZoneId = Convert.ToInt32(dataRow["ZoneId"]);
+                    City.Zone = dataRow["Zone"].ToString();
                 }
 
                 return City;
@@ -71,14 +71,15 @@ namespace SalesForce.Models.Setup
             var Data = SqlHelper.ExecuteDataset(HrGlobal.DbCon, CommandType.Text, query).Tables[0];
             if (Data.Rows.Count > 0)
             {
-                var City = new City();
+                
                 var Citylist = new List<City>();
                 foreach (DataRow dataRow in Data.Rows)
                 {
+                    var City = new City();
                     City.CityId = Convert.ToInt32(dataRow["CityId"]);
                     City.CityName = dataRow["CityName"].ToString();
                     City.CityCode = dataRow["CityCode"].ToString();
-                    City.ZoneId = Convert.ToInt32(dataRow["ZoneId"]);
+                    City.Zone = dataRow["Zone"].ToString();
                     Citylist.Add(City);
                 }
 
@@ -90,7 +91,7 @@ namespace SalesForce.Models.Setup
 
         public int GetMaxId()
         {
-            query = "select isnull(max(Cityid),0) + 1 tbl_City";
+            query = "select isnull(max(Cityid),0) + 1 from tbl_City";
             return Convert.ToInt32(SqlHelper.ExecuteScalar(HrGlobal.DbCon, CommandType.Text, query));
         }
     }

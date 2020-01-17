@@ -15,20 +15,20 @@ namespace SalesForce.Models.Setup
         public int AreaId { get; set; }
         public string AreaName { get; set; }
         public string AreaCode { get; set; }
-        public int ZoneId { get; set; }
-        public int CityId { get; set; }
+        public string Zone { get; set; }
+        public string City { get; set; }
     }
     public class AreaHandler
     {
         private string query = "";
         public int Insert(Area area)
         {
-            query = "insert into tbl_Area(AreaId,AreaName,AreaCode,ZoneId,CityId)Values('";
+            query = "insert into tbl_Area(AreaId,AreaName,AreaCode,Zone,City)Values('";
             query = query + area.AreaId + "','";
             query = query + area.AreaName + "','";
             query = query + area.AreaCode + "','";
-            query = query + area.ZoneId + "','";
-            query = query + area.CityId + "')";
+            query = query + area.Zone + "','";
+            query = query + area.City + "')";
             return SqlHelper.ExecuteNonQuery(HrGlobal.DbCon, CommandType.Text, query);
         }
 
@@ -37,8 +37,8 @@ namespace SalesForce.Models.Setup
             query = "update tbl_Area set";
             query = query + " AreaName = '" + Area.AreaName + "',";
             query = query + " AreaCode = '" + Area.AreaCode + "',";
-            query = query + " ZoneId = '" + Area.ZoneId + "',";
-            query = query + " CityId = '" + Area.CityId + "'";
+            query = query + " Zone = '" + Area.Zone + "',";
+            query = query + " City = '" + Area.City + "'";
             query = query + " Where AreaId = '" + Area.AreaId + "'";
             return SqlHelper.ExecuteNonQuery(HrGlobal.DbCon, CommandType.Text, query);
         }
@@ -61,8 +61,8 @@ namespace SalesForce.Models.Setup
                     Area.AreaId = Convert.ToInt32(dataRow["AreaId"]);
                     Area.AreaName = dataRow["AreaName"].ToString();
                     Area.AreaCode = dataRow["AreaCode"].ToString();
-                    Area.ZoneId = Convert.ToInt32(dataRow["ZoneId"]);
-                    Area.CityId = Convert.ToInt32(dataRow["AreaName"]);
+                    Area.Zone = dataRow["Zone"].ToString();
+                    Area.City = dataRow["City"].ToString();
                 }
 
                 return Area;
@@ -76,15 +76,16 @@ namespace SalesForce.Models.Setup
             var Data = SqlHelper.ExecuteDataset(HrGlobal.DbCon, CommandType.Text, query).Tables[0];
             if (Data.Rows.Count > 0)
             {
-                var Area = new Area();
+                
                 var Arealist = new List<Area>();
                 foreach (DataRow dataRow in Data.Rows)
                 {
+                    var Area = new Area();
                     Area.AreaId = Convert.ToInt32(dataRow["AreaId"]);
                     Area.AreaName = dataRow["AreaName"].ToString();
                     Area.AreaCode = dataRow["AreaCode"].ToString();
-                    Area.ZoneId = Convert.ToInt32(dataRow["ZoneId"]);
-                    Area.CityId = Convert.ToInt32(dataRow["AreaName"]);
+                    Area.Zone = dataRow["Zone"].ToString();
+                    Area.City = dataRow["City"].ToString();
                     Arealist.Add(Area);
                 }
 
@@ -96,7 +97,7 @@ namespace SalesForce.Models.Setup
 
         public int GetMaxId()
         {
-            query = "select isnull(max(Areaid),0) + 1 tbl_Area";
+            query = "select isnull(max(Areaid),0) + 1 from tbl_Area";
             return Convert.ToInt32(SqlHelper.ExecuteScalar(HrGlobal.DbCon, CommandType.Text, query));
         }
     }
